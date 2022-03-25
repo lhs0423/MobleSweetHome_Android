@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity"
+    android:background="@drawable/home">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:maxWidth="300dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/title"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="아이디찾기"/>
+        <EditText
+            android:id="@+id/search_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="가입한 이메일을 입력해주세요."
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:inputType="textUri"
+            android:background="@drawable/et_round"
+            android:singleLine="true"/>
+        <Button
+            android:id="@+id/btn_search_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:text="검색"
+            android:background="@drawable/buttonedit"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="비밀번호 찾기"/>
+
+        <EditText
+            android:id="@+id/search_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="아이디를 입력해주세요."
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:inputType="textUri"
+            android:background="@drawable/et_round"
+            android:singleLine="true"/>
+
+        <EditText
+            android:id="@+id/search_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="이름을 입력해주세요."
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:inputType="textUri"
+            android:background="@drawable/et_round"
+            android:singleLine="true"/>
+
+        <Button
+            android:id="@+id/btn_search_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:text="검색"
+            android:background="@drawable/buttonedit"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_search_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="80dp"
+            android:layout_gravity="center"
+            android:text="홈"
+            android:background="@drawable/buttonedit"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LightActivity"
+    android:background="#c5dfe5">
+
+    <LinearLayout
+        android:id="@+id/ll_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tvbox"
+            android:fontFamily="@font/jua"
+            android:gravity="center"
+            android:text="조명제어"
+            android:textColor="#00AC95"
+            android:textSize="50dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/tvbox"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/jua"
+                android:text="거실"
+                android:textColor="#00AC95"
+                android:textSize="30dp" />
+
+            <ImageView
+                android:id="@+id/light1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="105dp"
+                android:background="@drawable/turnoff1"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp" />
+
+            <Switch
+                android:id="@+id/switch_light1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="60dp"
+                android:textOff="꺼짐"
+                android:textOn="켜짐"
+                android:thumb="@drawable/switch_thumb"
+                android:track="@drawable/switch_track_selector" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/tvbox"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/jua"
+                android:text="화장실"
+                android:textColor="#00AC95"
+                android:textSize="30dp" />
+
+            <ImageView
+                android:id="@+id/light2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="80dp"
+                android:background="@drawable/turnoff1"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp" />
+
+            <Switch
+                android:id="@+id/switch_light2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="60dp"
+                android:textOff="꺼짐"
+                android:textOn="켜짐"
+                android:thumb="@drawable/switch_thumb"
+                android:track="@drawable/switch_track_selector" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/tvbox"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/jua"
+                android:text="방 1"
+                android:textColor="#00AC95"
+                android:textSize="30dp" />
+
+            <ImageView
+                android:id="@+id/light3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="110dp"
+                android:background="@drawable/turnoff1"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp" />
+
+            <Switch
+                android:id="@+id/switch_light3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="60dp"
+                android:textOff="꺼짐"
+                android:textOn="켜짐"
+                android:thumb="@drawable/switch_thumb"
+                android:track="@drawable/switch_track_selector" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_sensor_state"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#FF0000"
+            android:fontFamily="@font/jua"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/lightctl_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/buttonedit"
+            android:fontFamily="@font/jua"
+            android:text="메뉴"
+            android:textColor="#00CA95"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

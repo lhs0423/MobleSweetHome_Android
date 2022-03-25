@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PasswordUpdateActivity"
+    android:background="@drawable/home">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:maxWidth="300dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/title"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="비밀번호 변경"
+            android:fontFamily="@font/jua"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/update_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="변경할 비밀번호를 입력하세요."
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:inputType="textPassword"
+            android:background="@drawable/et_round"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/check_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호 재확인"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:inputType="textPassword"
+            android:background="@drawable/et_round"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/tv_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="#ffff0000"
+            android:layout_gravity="center"
+            android:text="비밀번호를 입력하세요."
+            android:fontFamily="@font/jua" />
+
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:text="확인"
+            android:background="@drawable/buttonedit"
+            android:fontFamily="@font/jua"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="변경"
+            android:background="@drawable/buttonedit"
+            android:fontFamily="@font/jua"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="메인화면"
+            android:background="@drawable/buttonedit"
+            android:fontFamily="@font/jua"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
