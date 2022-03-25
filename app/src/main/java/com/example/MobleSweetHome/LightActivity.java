@@ -155,7 +155,7 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
     };
 
     @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) { // git test
         switch (compoundButton.getId()) {
             case R.id.switch_light1:
                 if(isChecked) imageView1.setImageResource(R.drawable.turnon1);
