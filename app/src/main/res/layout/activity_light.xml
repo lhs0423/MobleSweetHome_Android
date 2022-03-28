@@ -11,8 +11,7 @@
         android:id="@+id/ll_light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -26,37 +25,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:padding="10dp"
             android:background="@drawable/tvbox"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:fontFamily="@font/jua"
-                android:text="거실"
-                android:textColor="#00AC95"
-                android:textSize="30dp" />
-
             <ImageView
+                android:layout_marginLeft="20dp"
                 android:id="@+id/light1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/turnoff1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="105dp"
-                android:background="@drawable/turnoff1"
-                android:maxWidth="50dp"
-                android:maxHeight="50dp" />
+                android:fontFamily="@font/jua"
+                android:text="거실"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:textColor="#00AC95"
+                android:textSize="30dp" />
 
             <Switch
                 android:id="@+id/switch_light1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="60dp"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:textOff="꺼짐"
                 android:textOn="켜짐"
                 android:thumb="@drawable/switch_thumb"
@@ -65,37 +66,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:padding="10dp"
             android:background="@drawable/tvbox"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:fontFamily="@font/jua"
-                android:text="화장실"
-                android:textColor="#00AC95"
-                android:textSize="30dp" />
-
             <ImageView
+                android:layout_marginLeft="20dp"
                 android:id="@+id/light2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/turnoff1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="80dp"
-                android:background="@drawable/turnoff1"
-                android:maxWidth="50dp"
-                android:maxHeight="50dp" />
+                android:fontFamily="@font/jua"
+                android:text="화장실"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:textColor="#00AC95"
+                android:textSize="30dp" />
 
             <Switch
                 android:id="@+id/switch_light2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="60dp"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:textOff="꺼짐"
                 android:textOn="켜짐"
                 android:thumb="@drawable/switch_thumb"
@@ -104,37 +107,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:padding="10dp"
             android:background="@drawable/tvbox"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:fontFamily="@font/jua"
-                android:text="방 1"
-                android:textColor="#00AC95"
-                android:textSize="30dp" />
-
             <ImageView
+                android:layout_marginLeft="20dp"
                 android:id="@+id/light3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/turnoff1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="110dp"
-                android:background="@drawable/turnoff1"
-                android:maxWidth="50dp"
-                android:maxHeight="50dp" />
+                android:fontFamily="@font/jua"
+                android:text="방 1"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:textColor="#00AC95"
+                android:textSize="30dp" />
 
             <Switch
                 android:id="@+id/switch_light3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="60dp"
+                android:layout_gravity="center"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:textOff="꺼짐"
                 android:textOn="켜짐"
                 android:thumb="@drawable/switch_thumb"

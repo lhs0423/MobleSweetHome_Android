@@ -16,6 +16,9 @@ public class RaspiResponse {
     @SerializedName("PM25")
     int PM25;
 
+    @SerializedName("gas")
+    int gas;
+
     public int getTemp() { return temp; }
 
     public int getHumi() {
@@ -25,5 +28,7 @@ public class RaspiResponse {
     public int getPM10() { return PM10; }
 
     public int getPM25() { return PM25; }
+
+    public int getGas() { return  gas; }
 
 }

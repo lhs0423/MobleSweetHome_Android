@@ -30,10 +30,18 @@ public class SecureActivity extends AppCompatActivity {
         btn1.setOnClickListener(MENU);
         btn2.setOnClickListener(Police_Call);
 
+
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setUseWideViewPort(true); // wide viewport를 사용하도록 설정
+        webView.getSettings().setLoadWithOverviewMode(true); // 컨텐츠가 웹뷰보다 클 경우 스크린 크기에 맞게 조정
+        webView.setHorizontalScrollBarEnabled(false); // 가로 스크롤
+        webView.setVerticalScrollBarEnabled(false); // 세로 스크롤
+
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
+
         webView.loadUrl(url);
+
     }
 
     public void setting() {

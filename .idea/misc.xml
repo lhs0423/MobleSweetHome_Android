@@ -17,7 +17,8 @@
         <entry key="app/src/main/res/drawable/tvbox.xml" value="0.2265" />
         <entry key="app/src/main/res/drawable/tvlr.xml" value="0.165" />
         <entry key="app/src/main/res/font/font.xml" value="0.41944444444444445" />
-        <entry key="app/src/main/res/layout/activity_light.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_fire.xml" value="0.396875" />
+        <entry key="app/src/main/res/layout/activity_light.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.335" />

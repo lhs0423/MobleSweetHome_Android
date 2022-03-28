@@ -48,6 +48,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         securebtn.setOnClickListener(this);
         windowbtn.setOnClickListener(this);
         securebtn.setOnClickListener(this);
+        firebtn.setOnClickListener(this);
         logout.setOnClickListener(this);
         test.setOnClickListener(this);
 
@@ -62,7 +63,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         lightbtn = (Button) findViewById(R.id.btn_lightctl);
         securebtn = (Button)findViewById(R.id.btn_securectl);
         windowbtn = (Button)findViewById(R.id.btn_windowctl);
-        firebtn = (Button)findViewById(R.id.btn_firectl);
+        firebtn = (Button)findViewById(R.id.btn_fire);
         logout = (Button)findViewById(R.id.btn_logout);
         user = (TextView)findViewById(R.id.tv_user);
         temper = (TextView)findViewById(R.id.tv_temper);
@@ -192,7 +193,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_windowctl:
                 break;
-            case R.id.btn_firectl:
+            case R.id.btn_fire:
+                Intent fire = new Intent(getApplicationContext(), FireActivity.class);
+                startActivity(fire);
                 break;
             case R.id.btn_logout:
                 ctl = false; // 스레드 종료

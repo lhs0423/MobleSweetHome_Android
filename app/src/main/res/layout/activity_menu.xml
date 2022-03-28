@@ -61,30 +61,33 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="190dp"
-                    android:layout_height="150dp"
+                    android:id="@+id/btn_lightctl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/buttonedit"
                     android:drawableTop="@drawable/turnon1"
                     android:fontFamily="@font/jua"
                     android:text="조명 제어"
                     android:textColor="#00AC95"
                     android:textSize="30dp"
-                    android:id="@+id/btn_lightctl"/>
+                    />
+
                 <Button
+                    android:id="@+id/btn_securectl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="190dp"
-                    android:layout_height="150dp"
+                    android:layout_weight="1"
                     android:background="@drawable/buttonedit"
                     android:drawableTop="@drawable/warning"
                     android:fontFamily="@font/jua"
                     android:text="보안 시스템"
                     android:textColor="#00AC95"
-                    android:textSize="30dp"
-                    android:id="@+id/btn_securectl"/>
+                    android:textSize="30dp" />
 
             </LinearLayout>
             <LinearLayout
@@ -92,30 +95,33 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <Button
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="190dp"
-                    android:layout_height="150dp"
+                    android:id="@+id/btn_windowctl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/buttonedit"
                     android:drawableTop="@drawable/window"
                     android:fontFamily="@font/jua"
                     android:text="환풍기 제어"
                     android:textColor="#00AC95"
-                    android:textSize="30dp"
-                    android:id="@+id/btn_windowctl"/>
+                    android:textSize="30dp" />
                 <Button
+                    android:id="@+id/btn_fire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_width="190dp"
-                    android:layout_height="150dp"
+                    android:layout_weight="1"
                     android:background="@drawable/buttonedit"
                     android:drawableTop="@drawable/fire"
                     android:fontFamily="@font/jua"
                     android:text="화재 시스템"
                     android:textColor="#00AC95"
-                    android:textSize="30dp"
-                    android:id="@+id/btn_firectl"/>
+                    android:textSize="30dp" />
 
             </LinearLayout>
 
