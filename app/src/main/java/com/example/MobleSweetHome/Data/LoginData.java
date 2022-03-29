@@ -13,4 +13,8 @@ public class LoginData {
         this.id = id;
         this.pw = pw;
     }
+
+    public LoginData(String id) {
+        this.id = id;
+    }
 }

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.MobleSweetHome.Data.LoginData;
 import com.example.MobleSweetHome.Data.RaspiData;
 import com.example.MobleSweetHome.Data.RaspiResponse;
 
@@ -78,7 +79,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = getIntent();
         userid = intent.getStringExtra("user");
-        user.setText(userid + "님 환영합니다!");
+        user.setText(userid);
 
         Internalinfo();
         server(); // 명균서버
@@ -278,7 +279,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void server() {
-        Call<ResponseBody> call_post = rs.service.test2_Func(new RaspiData());
+        Call<ResponseBody> call_post = rs.service.userId_Func(new LoginData(user.getText().toString()));
         call_post.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

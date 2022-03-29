@@ -68,8 +68,8 @@ public interface ApiService {
     @POST("retrofit/post/gas")
     Call<RaspiResponse> Gas_Func(@Body RaspiData data);
 
-    @POST("retrofit/post/test2")
-    Call<ResponseBody> test2_Func(@Body RaspiData data);
+    @POST("retrofit/post/out_info")
+    Call<ResponseBody> userId_Func(@Body LoginData data);
 
 
 
