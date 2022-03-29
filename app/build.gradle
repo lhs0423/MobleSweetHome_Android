@@ -46,6 +46,7 @@ dependencies {
     // jsoup : 특정 url의 html을 파싱
     implementation 'org.jsoup:jsoup:1.13.1'
 
+
 //    // Google Firebase
 //    implementation('com.google.firebase:firebase-messaging:17.0.0')
 }
