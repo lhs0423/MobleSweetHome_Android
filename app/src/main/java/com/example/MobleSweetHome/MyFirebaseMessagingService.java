@@ -85,16 +85,17 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService
 
     private void sendNotification(String title, String body) {
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.fire);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.firenotification);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 100, intent, PendingIntent.FLAG_MUTABLE);
+        Intent intent = new Intent(this, SplashActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder builder = getBuilder("00", "1234")
                 .setSmallIcon(R.drawable.sweethomeicon)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setLargeIcon(bitmap)
+                .setAutoCancel(true) // Notification을 클릭하면 자동으로 사라지도록
                 .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS)
                 .setContentIntent(pendingIntent);
 
