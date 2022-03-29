@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VentActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c5dfe5"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tvbox"
+            android:fontFamily="@font/jua"
+            android:gravity="center"
+            android:text="환풍기 제어"
+            android:textColor="#00AC95"
+            android:textSize="50dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tvbox"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_marginTop="50dp"
+                android:id="@+id/iv_ventilator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/open"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:track="@drawable/switch_track_selector"
+                android:thumb="@drawable/switch_thumb"
+                android:textOn="켜짐"
+                android:textOff="꺼짐"
+                android:id="@+id/switch_ventilator"
+                android:layout_marginTop="50dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonedit"
+            android:text="메뉴"
+            android:fontFamily="@font/jua"
+            android:textColor="#00CA95"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:id="@+id/ventilator_menu"
+            />
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

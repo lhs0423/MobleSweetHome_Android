@@ -5,29 +5,127 @@
     android:layout_height="match_parent"
     tools:context=".FireActivity">
 
-    <TextView
-        android:id="@+id/tv_token"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="token"
-        android:layout_centerInParent="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#c5dfe5"
+        >
 
-    <Button
-        android:id="@+id/btn_token"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv_token"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="token"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tvbox"
+            android:fontFamily="@font/jua"
+            android:gravity="center"
+            android:text="화재 시스템"
+            android:textColor="#00AC95"
+            android:textSize="50dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/tvbox"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="열 감지"
+                android:fontFamily="@font/jua"
+                android:textColor="#00AC95"
+                android:textSize="30dp"
+                android:background="@drawable/tvbox"
+                />
 
-    <TextView
-        android:id="@+id/tv_gas"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="gas"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_temper"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/jua"
+                    android:hint="열 감지중"
+                    android:textAlignment="center"
+                    android:textSize="30dp" />
+
+                <ImageView
+                    android:id="@+id/iv_temper"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/green_light"
+                    android:layout_marginRight="10dp"/>
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="가스 감지"
+                android:fontFamily="@font/jua"
+                android:textColor="#00AC95"
+                android:textSize="30dp"
+                android:background="@drawable/tvbox"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_gas"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/jua"
+                    android:hint="가스 감지중"
+                    android:textAlignment="center"
+                    android:textSize="30dp" />
+
+                <ImageView
+                    android:id="@+id/iv_gas"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/green_light"
+                    android:layout_marginRight="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <Button
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jua"
+            android:background="@drawable/buttonedit"
+            android:layout_gravity="center_horizontal"
+            android:text="신고하기"
+            android:textSize="30dp"
+            android:textColor="@drawable/txt_color"
+            android:id="@+id/call119"
+            android:enabled="false"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonedit"
+            android:text="메뉴"
+            android:fontFamily="@font/jua"
+            android:textColor="#00CA95"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:id="@+id/fire_back"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

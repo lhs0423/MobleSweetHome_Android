@@ -1,14 +1,20 @@
 package com.example.MobleSweetHome;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,11 +22,14 @@ import com.example.MobleSweetHome.Data.RaspiData;
 import com.example.MobleSweetHome.Data.RaspiResponse;
 
 import org.jsoup.Jsoup;
-import org.w3c.dom.Document;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Element;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +37,7 @@ import retrofit2.Response;
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener{
 
     RetrofitService rs = new RetrofitService();
-    Button lightbtn, windowbtn, firebtn, securebtn, logout, test;
+    Button lightbtn, windowbtn, firebtn, securebtn, logout;
     TextView user, temper, humid, pm10, pm25, temp_state, humi_state, pm10_state, pm25_state, internal_state;
     String userid;
 
@@ -36,6 +45,22 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     private long backKeyPressedTime = 0; // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
     private Toast toast; // 첫 번째 뒤로가기 버튼을 누를 때 표시
+
+
+    // 명균
+    final Bundle bundle = new Bundle();
+    TextView outtem, outhum, outparticul,outaddress,outhyperparticul,outweather;
+    String result, Urlsum , particul,hyperparticul,hum,tem,encode1,encode2,getWeather,URL1;
+    String weather = "날씨";
+    String good = "좋음";
+    String bad = "나쁨";
+    String toobad = "매우나쁨";
+    String normal = "보통";
+    ImageView weathericon;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +75,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         securebtn.setOnClickListener(this);
         firebtn.setOnClickListener(this);
         logout.setOnClickListener(this);
-        test.setOnClickListener(this);
 
         Intent intent = getIntent();
         userid = intent.getStringExtra("user");
         user.setText(userid + "님 환영합니다!");
 
         Internalinfo();
+        server(); // 명균서버
     }
 
     public void setting() {
@@ -76,8 +101,18 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         pm25_state = (TextView)findViewById(R.id.tv_pm25_state);
         internal_state = (TextView)findViewById(R.id.internal_state);
 
-        test = (Button)findViewById(R.id.btn_test);
+
+        // 명균 setting
+
+        outtem =  findViewById(R.id.tv_out_temper);
+        outhum =  findViewById(R.id.tv_out_humid);
+        outaddress =  findViewById(R.id.tv_address);
+        outparticul =  findViewById(R.id.tv_out_particul);
+        outhyperparticul = findViewById(R.id.tv_out_hyperparticul);
+        outweather =findViewById(R.id.tv_weather);
+        weathericon = findViewById(R.id.weatherIcon);
     }
+
 
     public void Internalinfo() { // 온습도, 미세먼지 정보
         Thread thread = new Thread("temp and humi Thread") {
@@ -179,6 +214,153 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         thread.start();
     }
 
+
+    //hanler을 이용하여 키값 찾아서 번들데이터 텍스트뷰에 넣기
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            outtem.setText(bundle.getString("temperature"));
+            outhum.setText(bundle.getString("humid"));
+            outparticul.setText(bundle.getString("particul"));
+            outhyperparticul.setText(bundle.getString("hyperparticul"));
+            outweather.setText(bundle.getString("weather"));
+            if (particul.equals(good)){
+                outparticul.setTextColor(Color.parseColor("#32a1ff"));
+            }else if (particul.equals(normal)){
+                outparticul.setTextColor(Color.parseColor("#00c73c"));
+            }else if (particul.equals(bad)) {
+                outparticul.setTextColor(Color.parseColor("#fd9b5a"));
+            }else if (particul.equals(toobad)){
+                outparticul.setTextColor(Color.parseColor("#fd5959"));}
+            if (hyperparticul.equals(good)){
+                outhyperparticul.setTextColor(Color.parseColor("#32a1ff"));
+            }else if (hyperparticul.equals(normal)){
+                outhyperparticul.setTextColor(Color.parseColor("#00c73c"));
+            }else if (hyperparticul.equals(bad)) {
+                outhyperparticul.setTextColor(Color.parseColor("#fd9b5a"));
+            }else if (hyperparticul.equals(toobad)){
+                outhyperparticul.setTextColor(Color.parseColor("#fd5959"));}
+            if (bundle.getString("weather").equals("비")) {
+                weathericon.setImageResource(R.drawable.rain);
+            }else if (bundle.getString("weather").equals("흐림")){
+                weathericon.setImageResource(R.drawable.cloudy);
+            }else if (bundle.getString("weather").equals("구름조금")){
+                weathericon.setImageResource(R.drawable.alittlecloud);
+            }else if (bundle.getString("weather").equals("구름많음")){
+                weathericon.setImageResource(R.drawable.cloudiness);
+            }else if (bundle.getString("weather").equals("약한비")){
+                weathericon.setImageResource(R.drawable.lightrain);
+            }else if (bundle.getString("weather").equals("강한비")){
+                weathericon.setImageResource(R.drawable.heavyrain);
+            }else if (bundle.getString("weather").equals("약한눈")){
+                weathericon.setImageResource(R.drawable.lightsnow);
+            }else if (bundle.getString("weather").equals("눈")){
+                weathericon.setImageResource(R.drawable.snow);
+            }else if (bundle.getString("weather").equals("강한눈")){
+                weathericon.setImageResource(R.drawable.heavysnow);
+            }else if (bundle.getString("weather").equals("흐린 후 갬")){
+                weathericon.setImageResource(R.drawable.cloudyandsunny);
+            }else if (bundle.getString("weather").equals("비 후 갬")){
+                weathericon.setImageResource(R.drawable.rainandsunny);
+            }else if (bundle.getString("weather").equals("눈 후 갬")){
+                weathericon.setImageResource(R.drawable.snowandsunny);
+            }else if (bundle.getString("weather").equals("흐려져 비")){
+                weathericon.setImageResource(R.drawable.sunnyandrain);
+            }else if (bundle.getString("weather").equals("흐려져 눈")){
+                weathericon.setImageResource(R.drawable.sunnyandsnow);
+            }else if (bundle.getString("weather").equals("맑음")){
+                weathericon.setImageResource(R.drawable.sunny);
+            }
+        }
+    };
+
+
+    public void server() {
+        Call<ResponseBody> call_post = rs.service.test2_Func(new RaspiData());
+        call_post.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()) {
+
+                    try {
+                        result = response.body().string();
+
+                        outaddress.setText(result);
+                        Log.v(rs.TAG, "result = " + result);
+                        encode1 = URLEncoder.encode(result,"UTF-8");
+                        Log.d(rs.TAG, "encode1 = " + encode1);
+                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                        testThred();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
+
+    public void testThred ( ) {
+        Thread thread = new Thread() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void run() {
+
+                try {
+                    encode2 = URLEncoder.encode( weather,"UTF-8");
+                    URL1 = "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=";
+                    Urlsum = URL1.concat(encode1).concat(encode2);
+
+
+                    Document document = Jsoup.connect(Urlsum).get();
+                    Elements elements1 = document.select(".weather_info").select("strong");
+                    Elements elements2 = document.select(".temperature_info").select("dd[class=desc]").next().next();
+                    Elements elements3 = document.select(".today_chart_list").select(".txt").select("span");
+                    Elements elements4 = document.select(".weather_main");
+
+                    Log.d("rs.TAG","초먼지 : "+elements3);
+                    boolean isEmpty = elements1.isEmpty();
+
+                    Log.d("Tag", "isNull? : " + isEmpty);
+                    if (isEmpty == false) {
+                        tem = elements1.get(0).text().substring(5);
+                        hum = elements2.get(0).text();
+                        particul = elements3.get(0).text();
+                        hyperparticul = elements3.get(1).text();
+                        getWeather = elements4.get(0).text();
+
+                        bundle.putString("temperature", tem);
+                        bundle.putString("humid", hum);
+                        bundle.putString("particul",particul);
+                        bundle.putString("hyperparticul",hyperparticul);
+                        bundle.putString("weather",getWeather);
+
+                        Message msg = handler.obtainMessage();
+                        msg.setData(bundle);
+                        handler.sendMessage(msg);
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+    }
+
+
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -192,6 +374,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(secure);
                 break;
             case R.id.btn_windowctl:
+                Intent window = new Intent(getApplicationContext(), VentActivity.class);
+                startActivity(window);
                 break;
             case R.id.btn_fire:
                 Intent fire = new Intent(getApplicationContext(), FireActivity.class);
@@ -201,23 +385,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 ctl = false; // 스레드 종료
                 Toast.makeText(getApplicationContext(), "로그아웃이 되었습니다.", Toast.LENGTH_SHORT).show();
                 finish(); // 액티비티 종료, 추후 서버 연동 고려?
-                break;
-            case R.id.btn_test:
-
-                rs.service.Temp_Humi(new RaspiData()).enqueue(new Callback<RaspiResponse>() {
-                    @Override
-                    public void onResponse(Call<RaspiResponse> call, Response<RaspiResponse> response) {
-                        if(response.isSuccessful()) {
-                            RaspiResponse result = response.body();
-                            temper.setText(String.valueOf(result.getTemp()));
-                            humid.setText(String.valueOf(result.getHumi()));
-                        }
-                    }
-                    @Override
-                    public void onFailure(Call<RaspiResponse> call, Throwable t) {
-
-                    }
-                });
                 break;
         }
     }

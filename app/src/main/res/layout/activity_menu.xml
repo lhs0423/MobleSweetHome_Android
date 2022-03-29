@@ -305,115 +305,193 @@
             </LinearLayout>
 
 
-
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tvbox"
-                android:text=" 외부 "
-                android:fontFamily="@font/jua"
-                android:textColor="#00AC95"
-                android:textSize="25dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/tvlr">
+                android:background="@drawable/tvbox">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="온도 : "
                     android:fontFamily="@font/jua"
+                    android:text=" 외부 "
                     android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    />
+                    android:textSize="25dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 00 "
-                    android:fontFamily="@font/jua"
+                    android:text="("
+                    android:textSize="25dp"
                     android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    android:id="@+id/tv_out_temper"
-                    />
+                    android:fontFamily="@font/jua"
+                    android:layout_marginLeft="10dp" />
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="℃"
+                    android:hint="지역"
+                    android:textSize="25dp"
                     android:fontFamily="@font/jua"
                     android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    />
+                    android:id="@+id/tv_address"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=")"
+                    android:textSize="25dp"
+                    android:textColor="#00AC95"
+                    android:fontFamily="@font/jua" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/tvlr">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="습도 : "
-                    android:fontFamily="@font/jua"
-                    android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" 00 "
-                    android:fontFamily="@font/jua"
-                    android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    android:id="@+id/tv_out_humid"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="%"
-                    android:fontFamily="@font/jua"
-                    android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:background="@drawable/tvbottom">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="미세먼지 : "
-                    android:fontFamily="@font/jua"
-                    android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" 00 "
-                    android:fontFamily="@font/jua"
-                    android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    android:id="@+id/tv_out_particul"
-                    />
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="㎍/㎥"
-                    android:fontFamily="@font/jua"
-                    android:textColor="#00AC95"
-                    android:textSize="20dp"
-                    />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="온도 : "
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 00 "
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            android:id="@+id/tv_out_temper"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="C"
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="습도 : "
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 00 "
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            android:id="@+id/tv_out_humid"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="미세먼지 : "
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="미세먼지"
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            android:id="@+id/tv_out_particul"
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="초미세먼지 : "
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="초미세먼지"
+                            android:fontFamily="@font/jua"
+                            android:textColor="#00AC95"
+                            android:textSize="20dp"
+                            android:id="@+id/tv_out_hyperparticul"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="날씨"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/jua"
+                        android:textColor="#00AC95"
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_weather"/>
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/weatherIcon"
+                        android:layout_gravity="center"
+                        />
+                </LinearLayout>
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="test"/>
+
+
+
 
         </LinearLayout>
     </ScrollView>
