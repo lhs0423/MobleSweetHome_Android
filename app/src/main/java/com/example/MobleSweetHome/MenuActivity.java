@@ -61,8 +61,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +70,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         lightbtn.setOnClickListener(this);
         securebtn.setOnClickListener(this);
-        windowbtn.setOnClickListener(this);
+//        windowbtn.setOnClickListener(this);
         securebtn.setOnClickListener(this);
         firebtn.setOnClickListener(this);
         logout.setOnClickListener(this);
@@ -88,7 +86,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     public void setting() {
         lightbtn = (Button) findViewById(R.id.btn_lightctl);
         securebtn = (Button)findViewById(R.id.btn_securectl);
-        windowbtn = (Button)findViewById(R.id.btn_windowctl);
+//        windowbtn = (Button)findViewById(R.id.btn_windowctl);
         firebtn = (Button)findViewById(R.id.btn_fire);
         logout = (Button)findViewById(R.id.btn_logout);
         user = (TextView)findViewById(R.id.tv_user);
@@ -292,7 +290,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                         Log.v(rs.TAG, "result = " + result);
                         encode1 = URLEncoder.encode(result,"UTF-8");
                         Log.d(rs.TAG, "encode1 = " + encode1);
-                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                         testThred();
 
                     } catch (Exception e) {
@@ -374,10 +372,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 Intent secure = new Intent(getApplicationContext(),SecureActivity.class);
                 startActivity(secure);
                 break;
-            case R.id.btn_windowctl:
-                Intent window = new Intent(getApplicationContext(), VentActivity.class);
-                startActivity(window);
-                break;
+//            case R.id.btn_windowctl:
+//                Intent window = new Intent(getApplicationContext(), VentActivity.class);
+//                startActivity(window);
+//                break;
             case R.id.btn_fire:
                 Intent fire = new Intent(getApplicationContext(), FireActivity.class);
                 startActivity(fire);

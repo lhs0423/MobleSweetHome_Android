@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     RetrofitService rs = new RetrofitService(); // Retrofit 객체 생성
     private EditText et_id, et_pw;
     private Button btn_login, btn_sign, btn_search;
-    private TextView tv;
+//    private TextView tv;
 
     final static int REQUEST_CODE_SIGNUP = 1;
 
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btn_login = (Button)findViewById(R.id.btn_login);
         btn_sign = (Button)findViewById(R.id.btn_sign);
         btn_search = (Button)findViewById(R.id.btn_search);
-        tv = (TextView)findViewById(R.id.tv);
+//        tv = (TextView)findViewById(R.id.tv);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btn_login: // 로그인
                 String id = et_id.getText().toString();
                 String pw = et_pw.getText().toString();
-                tv.setText(id + pw); // 테스트 출력
+//                tv.setText(id + pw); // 테스트 출력
 
                 rs.service.LoginFunc(new LoginData(id, pw)).enqueue(new Callback<ResponseBody>() {
                     @Override

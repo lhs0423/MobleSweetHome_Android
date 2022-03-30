@@ -46,6 +46,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         search_btn_home = (Button) findViewById(R.id.btn_search_home);
     }
 
+
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

@@ -8,59 +8,57 @@
 
     <ImageView
         android:id="@+id/iv"
+        android:layout_width="400dp"
+        android:layout_height="250dp"
         android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:maxWidth="300dp"
+        android:maxHeight="200dp"
         android:src="@drawable/title" />
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_centerInParent="true"
-        android:text="회원가입 테스트"
-        android:fontFamily="@font/jua" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/tv"
-        android:layout_centerInParent="true">
+        android:layout_below="@id/iv"
+        android:layout_centerInParent="true"
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원 로그인"
+            android:fontFamily="@font/jua"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         <EditText
             android:id="@+id/et_id"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:background="@drawable/et_round"
             android:hint="ID"
+            android:fontFamily="@font/jua"
             android:inputType="text"
             android:gravity="center"/>
 
         <EditText
             android:id="@+id/et_pw"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:background="@drawable/et_round"
             android:hint="PW"
+            android:fontFamily="@font/jua"
             android:inputType="textPassword"
             android:gravity="center"/>
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:padding="5dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonedit"
@@ -70,10 +68,7 @@
 
         <Button
             android:id="@+id/btn_sign"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:padding="5dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonedit"
@@ -83,10 +78,7 @@
 
         <Button
             android:id="@+id/btn_search"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:padding="5dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonedit"

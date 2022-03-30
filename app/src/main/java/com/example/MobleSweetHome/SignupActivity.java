@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -87,7 +88,7 @@ public class SignupActivity extends AppCompatActivity {
                 // 시군구, 동의 스피너를 초기화한다.
                 switch (position) {
                     case 0:
-                        sp_gu.setAdapter(null);
+                        setguSpinnerAdapterItem(R.array.select_gu);
                         break;
                     case 1:
                         setguSpinnerAdapterItem(R.array.seoul_area);
@@ -155,6 +156,7 @@ public class SignupActivity extends AppCompatActivity {
         if (sp_city.getSelectedItemPosition() > 1) {
 
         }
+
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, (String[])getResources().getStringArray(array_resource));
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_gu.setAdapter(arrayAdapter);
@@ -195,11 +197,13 @@ public class SignupActivity extends AppCompatActivity {
                 if (et_pw.getText().toString().equals(et_pw_check.getText().toString())){
                     tv_check.setText("비밀번호가 일치합니다.");
                     tv_check.setTextColor(Color.parseColor("#000000"));
+                    btn_signup.setTextColor(Color.parseColor("#000000"));
                     btn_signup.setEnabled(true);
                 }
                 else {
-                    tv_check.setText("비밀번호가 일치하지않습니다.");
+                    tv_check.setText("비밀번호가 일치하지 않습니다.");
                     tv_check.setTextColor(Color.parseColor("#FF0000"));
+                    btn_signup.setTextColor(Color.parseColor("#808080"));
                     btn_signup.setEnabled(false);
                 }
             }
@@ -209,11 +213,13 @@ public class SignupActivity extends AppCompatActivity {
                 if (et_pw.getText().toString().equals(et_pw_check.getText().toString())){
                     tv_check.setText("비밀번호가 일치합니다.");
                     tv_check.setTextColor(Color.parseColor("#000000"));
+                    btn_signup.setTextColor(Color.parseColor("#000000"));
                     btn_signup.setEnabled(true);
                 }
                 else {
-                    tv_check.setText("비밀번호가 일치하지않습니다.");
+                    tv_check.setText("비밀번호가 일치하지 않습니다.");
                     tv_check.setTextColor(Color.parseColor("#FF0000"));
+                    btn_signup.setTextColor(Color.parseColor("#808080"));
                     btn_signup.setEnabled(false);
                 }
             }
@@ -222,33 +228,17 @@ public class SignupActivity extends AppCompatActivity {
 
 
 
-    View.OnClickListener check = new View.OnClickListener() { // 비밀번호 확인
-        @Override
-        public void onClick(View view) {
-            if (et_pw.getText().toString().equals(et_pw_check.getText().toString())){
-                tv_check.setText("비밀번호가 일치합니다.");
-            }
-            else{
-                tv_check.setText("비밀번호가 일치하지않습니다.");
-            }
-        }
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//    View.OnClickListener check = new View.OnClickListener() { // 비밀번호 확인
+//        @Override
+//        public void onClick(View view) {
+//            if (et_pw.getText().toString().equals(et_pw_check.getText().toString())){
+//                tv_check.setText("비밀번호가 일치합니다.");
+//            }
+//            else{
+//                tv_check.setText("비밀번호가 일치하지않습니다.");
+//            }
+//        }
+//    };
 
 
 
@@ -256,6 +246,7 @@ public class SignupActivity extends AppCompatActivity {
     View.OnClickListener signup = new View.OnClickListener() { // 회원가입
         @Override
         public void onClick(View view) {
+
             String id = et_id.getText().toString();
             String pw = et_pw.getText().toString();
             String name = et_name.getText().toString();
@@ -264,13 +255,14 @@ public class SignupActivity extends AppCompatActivity {
             String birth = et_birth.getText().toString() + "-" +sp_month.getSelectedItem().toString() + "-" + et_day.getText().toString(); // 수정
             String number = et_number.getText().toString();
 
+
             if(id.length() == 0 || pw.length() == 0 || name.length() == 0 || birth.length() == 0 || number.length() == 0 || address.length() == 0 || email.length() == 0){
                 Toast.makeText(getApplicationContext(), "미기재한 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
-            else if(tv_check.getText().equals("비밀번호가 일치하지않습니다.") || tv_check.getText().equals("비밀번호를 입력하세요.")) {
-                Toast.makeText(getApplicationContext(), "비밀번호 확인이 필요합니다.", Toast.LENGTH_SHORT).show();
-            }
-            else {
+//            else if(tv_check.getText().equals("비밀번호가 일치하지않습니다.") || tv_check.getText().equals("비밀번호를 입력하세요.")) {
+//                Toast.makeText(getApplicationContext(), "비밀번호 확인이 필요합니다.", Toast.LENGTH_SHORT).show();
+//            }
+            else { // 회원가입 성공 DB저장
                 rs.service.SignupFunc(new SignupData(id, pw, name, birth, number, address, email)).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

@@ -37,8 +37,9 @@
         <EditText
             android:id="@+id/update_pw"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="변경할 비밀번호를 입력하세요."
+            android:fontFamily="@font/jua"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
@@ -49,8 +50,9 @@
         <EditText
             android:id="@+id/check_pw"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="비밀번호 재확인"
+            android:fontFamily="@font/jua"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
@@ -66,20 +68,9 @@
             android:textColor="#ffff0000"
             android:layout_gravity="center"
             android:text="비밀번호를 입력하세요."
+            android:textSize="18dp"
             android:fontFamily="@font/jua" />
 
-        <Button
-            android:id="@+id/btn_check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:text="확인"
-            android:background="@drawable/buttonedit"
-            android:fontFamily="@font/jua"
-            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btn_update"
@@ -87,12 +78,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:text="변경"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:enabled="false"
             android:background="@drawable/buttonedit"
             android:fontFamily="@font/jua"
-            android:textColor="@color/black"/>
+            android:textColor="#808080"/>
 
         <Button
             android:id="@+id/btn_home"
@@ -103,6 +96,7 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:text="메인화면"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:background="@drawable/buttonedit"
             android:fontFamily="@font/jua"
             android:textColor="@color/black"/>

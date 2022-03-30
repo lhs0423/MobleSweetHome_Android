@@ -43,9 +43,10 @@
         <EditText
             android:id="@+id/signup_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginBottom="10dp"
             android:hint="영문 입력"
+            android:fontFamily="@font/jua"
             android:inputType="textUri"
             android:background="@drawable/et_round"
             android:singleLine="true" />
@@ -61,10 +62,11 @@
         <EditText
             android:id="@+id/signup_pw"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/et_round"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:fontFamily="@font/jua"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,11 +78,12 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginBottom="10dp"
             android:inputType="textPassword"
             android:id="@+id/signup_check_pw"
             android:background="@drawable/et_round"
+            android:fontFamily="@font/jua"
             android:selectAllOnFocus="true" />
 
         <TextView
@@ -89,7 +92,7 @@
             android:layout_marginBottom="5dp"
             android:layout_gravity="center"
             android:text="비밀번호를 입력하세요."
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textColor="#FF0000"
             android:id="@+id/regi_tv_compare"
             android:fontFamily="@font/jua" />
@@ -105,10 +108,11 @@
         <EditText
             android:id="@+id/signup_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/et_round"
-            android:inputType="text" />
+            android:inputType="text"
+            android:fontFamily="@font/jua"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -124,36 +128,41 @@
                 android:orientation="horizontal">
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:inputType="textEmailAddress"
                     android:id="@+id/signup_email"
                     android:background="@drawable/et_round"
+                    android:fontFamily="@font/jua"
                     />
                 <TextView
                     android:id="@+id/at_sign"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="\@"
-                    android:background="@drawable/et_round"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/et_round"
-                    android:id="@+id/signup_domain"/>
+                    android:id="@+id/signup_domain"
+                    android:fontFamily="@font/jua"/>
             </LinearLayout>
 
         <Spinner
             android:layout_marginTop="10dp"
             android:layout_gravity="right"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginBottom="10dp"
             android:id="@+id/spinner_mail"
-            android:background="@drawable/spinneredit"/>
+            android:background="@drawable/spinneredit"
+            android:fontFamily="@font/jua"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -170,18 +179,20 @@
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/spinneredit"
+                android:fontFamily="@font/jua"
                 android:id="@+id/spinner_si" />
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/spinneredit"
+                android:fontFamily="@font/jua"
                 android:id="@+id/spinner_gu"/>
         </LinearLayout>
 
@@ -203,8 +214,9 @@
             <EditText
                 android:id="@+id/signup_birth"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:hint="년도(4자)"
+                android:fontFamily="@font/jua"
                 android:gravity="center"
                 android:background="@drawable/et_round"
                 android:layout_marginRight="5dp"
@@ -215,22 +227,24 @@
             <Spinner
                 android:id="@+id/spinner_month"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/spinneredit" />
+                android:background="@drawable/spinneredit"
+                android:fontFamily="@font/jua"/>
 
             <EditText
                 android:id="@+id/signup_day"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/et_round"
                 android:inputType="date"
                 android:maxLength="2"
                 android:hint="일(2자)"
+                android:fontFamily="@font/jua"
                 android:gravity="center"
                 android:singleLine="true" />
         </LinearLayout>
@@ -247,22 +261,25 @@
             android:id="@+id/signup_phonenum"
             android:background="@drawable/et_round"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginBottom="15dp"
             android:inputType="phone"
             android:singleLine="true"
-            android:text="010" />
+            android:text="010"
+            android:fontFamily="@font/jua"/>
 
         <Button
             android:id="@+id/btn_signup"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:background="@drawable/buttonedit"
+            android:enabled="false"
+            android:fontFamily="@font/jua"
             android:gravity="center"
             android:text="회원가입"
-            android:background="@drawable/buttonedit"
-            android:fontFamily="@font/jua"
-            android:textColor="@color/black" />
+            android:textColor="#808080"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 
     </ScrollView>
