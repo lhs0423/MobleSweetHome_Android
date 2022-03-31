@@ -1,4 +1,4 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Server;
 
 import com.example.MobleSweetHome.Server.ApiService;
 
@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
-    String TAG = "Retrofit";
+    public String TAG = "Retrofit";
     final String URL = "http://192.168.0.23:8888/"; // moble local ip
 //    final String URL = "http://172.30.1.30:8888/"; // 안산 local ip
 //    final String URL = "http://192.168.0.59:8888/"; // 기민 local ip
@@ -19,5 +19,5 @@ public class RetrofitService {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    ApiService service = retrofit.create(ApiService.class); // 통신서비스
+    public ApiService service = retrofit.create(ApiService.class); // 통신서비스
 }

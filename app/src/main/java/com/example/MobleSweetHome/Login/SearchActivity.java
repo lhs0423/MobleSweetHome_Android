@@ -1,4 +1,4 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.MobleSweetHome.Data.SearchData;
+import com.example.MobleSweetHome.R;
+import com.example.MobleSweetHome.Server.RetrofitService;
 
 import java.io.IOException;
 
@@ -21,10 +23,10 @@ import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
+    RetrofitService rs = new RetrofitService();
+
     EditText et_email, et_id, et_name;
     Button search_btn_id, search_btn_pw, search_btn_home;
-
-    RetrofitService rs = new RetrofitService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +48,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         search_btn_home = (Button) findViewById(R.id.btn_search_home);
     }
 
-
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -59,7 +58,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 rs.service.Search_idFunc(new SearchData(email)).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) {
+                        if (response.isSuccessful()) { // 서버통신 성공
                             try {
                                 String result = response.body().string();
                                 Log.v(rs.TAG, "[SearchActivity] id = " + result);
@@ -72,14 +71,14 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } else {
+                        } else { // 서버통신 에러
                             Log.v(rs.TAG, "[SearchActivity] error = " + String.valueOf(response.body()));
                             Toast.makeText(getApplicationContext(), "error = " + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) { // 서버통신 실패
                         Log.v(rs.TAG, "[SearchActivity] Fail");
                         Toast.makeText(getApplicationContext(), "Response Fail", Toast.LENGTH_SHORT).show();
                     }
@@ -94,13 +93,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 rs.service.Search_pwFunc(new SearchData(id, name)).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) {
+                        if (response.isSuccessful()) { // 서버통신 성공
                             try {
                                 String result = response.body().string();
                                 Log.v(rs.TAG, "[SearchActivity] member info = " + result);
-
-                                if (result.equals("없음"))
+                                if (result.equals("없음")) {
                                     Toast.makeText(getApplicationContext(), "정보가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                                }
                                 else {
                                     Toast.makeText(getApplicationContext(), "정보가 일치합니다.\n 비밀번호를 변경하세요.", Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(SearchActivity.this, PasswordUpdateActivity.class);
@@ -110,14 +109,14 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } else {
+                        } else { // 서버통신 에러
                             Log.v(rs.TAG, "[SearchActivity] error = " + String.valueOf(response.body()));
                             Toast.makeText(getApplicationContext(), "error = " + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) { // 서버통신 실패
                         Log.v(rs.TAG, "[SearchActivity] Fail");
                         Toast.makeText(getApplicationContext(), "Response Fail", Toast.LENGTH_SHORT).show();
                     }

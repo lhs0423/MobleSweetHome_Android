@@ -1,4 +1,4 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,11 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 
+import com.example.MobleSweetHome.R;
+
 public class VentActivity extends AppCompatActivity {
+
+    // RaspberryPi 환풍기 미구현
 
     Button returnmenu;
     Switch ventilatorswitch;

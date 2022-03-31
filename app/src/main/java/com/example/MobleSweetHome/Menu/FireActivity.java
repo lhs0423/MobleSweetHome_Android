@@ -1,6 +1,5 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Menu;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,21 +10,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.MobleSweetHome.Data.RaspiData;
 import com.example.MobleSweetHome.Data.RaspiResponse;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
+import com.example.MobleSweetHome.R;
+import com.example.MobleSweetHome.Server.RetrofitService;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FireActivity extends AppCompatActivity {
 
+    RetrofitService rs = new RetrofitService();
     Button returnmenu,calling;
     ImageView temperimage, gasimage;
     TextView tem,gas;
@@ -35,7 +32,6 @@ public class FireActivity extends AppCompatActivity {
 
 //    TextView tv_token, tv_gas;
 //    Button btn_token;
-    RetrofitService rs = new RetrofitService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +116,6 @@ public class FireActivity extends AppCompatActivity {
                                 gasimage.setImageResource(R.drawable.red_light);
                                 calling.setEnabled(true);
 
-
                             }else {
                                 gas.setTextColor(Color.parseColor("#00c73c"));
                                 gasimage.setImageResource(R.drawable.green_light);
@@ -140,7 +135,6 @@ public class FireActivity extends AppCompatActivity {
                     }
 
                 }
-
             }
 
         };
@@ -188,25 +182,6 @@ public class FireActivity extends AppCompatActivity {
         };
         thread.start();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //    View.OnClickListener Token = new View.OnClickListener() {
 //        @Override

@@ -1,4 +1,4 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Login;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.MobleSweetHome.Data.LoginData;
-
-import org.jsoup.Jsoup;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import com.example.MobleSweetHome.Menu.MenuActivity;
+import com.example.MobleSweetHome.R;
+import com.example.MobleSweetHome.Server.RetrofitService;
 
 import java.io.IOException;
 
@@ -30,7 +28,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     RetrofitService rs = new RetrofitService(); // Retrofit 객체 생성
     private EditText et_id, et_pw;
     private Button btn_login, btn_sign, btn_search;
-//    private TextView tv;
 
     final static int REQUEST_CODE_SIGNUP = 1;
 
@@ -55,28 +52,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btn_login = (Button)findViewById(R.id.btn_login);
         btn_sign = (Button)findViewById(R.id.btn_sign);
         btn_search = (Button)findViewById(R.id.btn_search);
-//        tv = (TextView)findViewById(R.id.tv);
     }
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
-
         // 마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
         // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지났으면 Toast Show
         // 2000 millseconds = 2 seconds
-
         if(System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
             toast = Toast.makeText(this, "한번 더 누르면 App이 종료됩니다.", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
-
         // 마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
         // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
         // 현재 표시된 Toast 취소
-
         if(System.currentTimeMillis() <= backKeyPressedTime + 2000) {
             finish();
             toast.cancel();
@@ -89,7 +80,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btn_login: // 로그인
                 String id = et_id.getText().toString();
                 String pw = et_pw.getText().toString();
-//                tv.setText(id + pw); // 테스트 출력
 
                 rs.service.LoginFunc(new LoginData(id, pw)).enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -149,6 +139,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // SignupActivity에서 회원가입이 성공했을 때 LoginActivity의 ID, PW 자동 입력
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE_SIGNUP){
             if(resultCode == RESULT_OK){

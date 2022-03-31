@@ -1,7 +1,6 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Menu;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,11 +20,12 @@ import android.widget.Toast;
 import com.example.MobleSweetHome.Data.LoginData;
 import com.example.MobleSweetHome.Data.RaspiData;
 import com.example.MobleSweetHome.Data.RaspiResponse;
+import com.example.MobleSweetHome.R;
+import com.example.MobleSweetHome.Server.RetrofitService;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.w3c.dom.Element;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -38,17 +38,15 @@ import retrofit2.Response;
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener{
 
     RetrofitService rs = new RetrofitService();
-    Button lightbtn, windowbtn, firebtn, securebtn, logout;
+    Button lightbtn, firebtn, securebtn, logout;
     TextView user, temper, humid, pm10, pm25, temp_state, humi_state, pm10_state, pm25_state, internal_state;
     String userid;
-
     Boolean ctl = true;
 
     private long backKeyPressedTime = 0; // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
     private Toast toast; // 첫 번째 뒤로가기 버튼을 누를 때 표시
 
-
-    // 명균
+    // 명균 code
     final Bundle bundle = new Bundle();
     TextView outtem, outhum, outparticul,outaddress,outhyperparticul,outweather;
     String result, Urlsum , particul,hyperparticul,hum,tem,encode1,encode2,getWeather,URL1;
@@ -59,8 +57,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     String normal = "보통";
     ImageView weathericon;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,23 +66,20 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         lightbtn.setOnClickListener(this);
         securebtn.setOnClickListener(this);
-//        windowbtn.setOnClickListener(this);
         securebtn.setOnClickListener(this);
         firebtn.setOnClickListener(this);
         logout.setOnClickListener(this);
 
         Intent intent = getIntent();
-        userid = intent.getStringExtra("user");
-        user.setText(userid);
+        user.setText(intent.getStringExtra("user"));
 
-        Internalinfo();
-        server(); // 명균서버
+        Internalinfo(); // 온습도, 미세먼지 내부정보(Raspberry Pi Sensor)
+        outinfo_server(); // 명균서버
     }
 
     public void setting() {
         lightbtn = (Button) findViewById(R.id.btn_lightctl);
         securebtn = (Button)findViewById(R.id.btn_securectl);
-//        windowbtn = (Button)findViewById(R.id.btn_windowctl);
         firebtn = (Button)findViewById(R.id.btn_fire);
         logout = (Button)findViewById(R.id.btn_logout);
         user = (TextView)findViewById(R.id.tv_user);
@@ -100,9 +93,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         pm25_state = (TextView)findViewById(R.id.tv_pm25_state);
         internal_state = (TextView)findViewById(R.id.internal_state);
 
-
         // 명균 setting
-
         outtem =  findViewById(R.id.tv_out_temper);
         outhum =  findViewById(R.id.tv_out_humid);
         outaddress =  findViewById(R.id.tv_address);
@@ -113,8 +104,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public void Internalinfo() { // 온습도, 미세먼지 정보
-        Thread thread = new Thread("temp and humi Thread") {
+    public void Internalinfo() {
+        Thread thread = new Thread("temp & humi Thread") {
 
             @Override
             public void run() {
@@ -203,19 +194,18 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     });
                     try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
+                        Thread.sleep(10000); // 10초에 한번씩 내부정보가 갱신되도록
+                   } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
         };
         thread.start();
-    }
-
+    } // 온습도, 미세먼지 정보
 
     //hanler을 이용하여 키값 찾아서 번들데이터 텍스트뷰에 넣기
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
@@ -233,6 +223,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 outparticul.setTextColor(Color.parseColor("#fd9b5a"));
             }else if (particul.equals(toobad)){
                 outparticul.setTextColor(Color.parseColor("#fd5959"));}
+
             if (hyperparticul.equals(good)){
                 outhyperparticul.setTextColor(Color.parseColor("#32a1ff"));
             }else if (hyperparticul.equals(normal)){
@@ -241,6 +232,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 outhyperparticul.setTextColor(Color.parseColor("#fd9b5a"));
             }else if (hyperparticul.equals(toobad)){
                 outhyperparticul.setTextColor(Color.parseColor("#fd5959"));}
+
             if (bundle.getString("weather").equals("비")) {
                 weathericon.setImageResource(R.drawable.rain);
             }else if (bundle.getString("weather").equals("흐림")){
@@ -276,7 +268,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     };
 
 
-    public void server() {
+    public void outinfo_server() {
         Call<ResponseBody> call_post = rs.service.userId_Func(new LoginData(user.getText().toString()));
         call_post.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -291,13 +283,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                         encode1 = URLEncoder.encode(result,"UTF-8");
                         Log.d(rs.TAG, "encode1 = " + encode1);
 //                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                        testThred();
+                        outinfoThred();
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
-
                 }
             }
 
@@ -306,20 +296,17 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-    }
+    } // 사용자 아이디를 서버 측에 보내서 DB에 해당 아이디가 존재하면 가입한 당시 주소를 이용해 외부정보 웹 크롤링
 
-
-    public void testThred ( ) {
+    public void outinfoThred ( ) {
         Thread thread = new Thread() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void run() {
-
                 try {
                     encode2 = URLEncoder.encode( weather,"UTF-8");
                     URL1 = "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=";
                     Urlsum = URL1.concat(encode1).concat(encode2);
-
 
                     Document document = Jsoup.connect(Urlsum).get();
                     Elements elements1 = document.select(".weather_info").select("strong");
@@ -355,33 +342,25 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
         thread.start();
-    }
-
-
-
+    } // 외부정보 가져오기
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_lightctl:
-                Intent light = new Intent(getApplicationContext(),LightActivity.class);
+            case R.id.btn_lightctl: // 조명제어
+                Intent light =new Intent(getApplicationContext(), LightActivity.class);
                 startActivity(light);
-//                startActivityForResult(light, REQUEST_CODE_LIGHT);
                 break;
-            case R.id.btn_securectl:
-                Intent secure = new Intent(getApplicationContext(),SecureActivity.class);
+            case R.id.btn_securectl: // 보안 시스템
+                Intent secure = new Intent(getApplicationContext(), SecureActivity.class);
                 startActivity(secure);
                 break;
-//            case R.id.btn_windowctl:
-//                Intent window = new Intent(getApplicationContext(), VentActivity.class);
-//                startActivity(window);
-//                break;
-            case R.id.btn_fire:
+            case R.id.btn_fire: // 화재 시스템
                 Intent fire = new Intent(getApplicationContext(), FireActivity.class);
                 startActivity(fire);
                 break;
-            case R.id.btn_logout:
-                ctl = false; // 스레드 종료
+            case R.id.btn_logout: // 로그아웃
+                ctl = false; // 스레드 종료하게끔 true -> false
                 Toast.makeText(getApplicationContext(), "로그아웃이 되었습니다.", Toast.LENGTH_SHORT).show();
                 finish(); // 액티비티 종료, 추후 서버 연동 고려?
                 break;
@@ -398,7 +377,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if(System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            ctl = false; // 스레드 종료
+            ctl = false; // 스레드 종료하게끔 true -> false
             finish();
             toast.cancel();
         }

@@ -1,10 +1,9 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.MobleSweetHome.Data.SignupData;
+import com.example.MobleSweetHome.R;
+import com.example.MobleSweetHome.Server.RetrofitService;
 
 import java.io.IOException;
 
@@ -29,18 +30,14 @@ import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity {
 
+    RetrofitService rs = new RetrofitService();
+
     EditText et_id, et_pw, et_pw_check, et_name, et_email, et_domain, et_birth, et_day, et_number;
     TextView tv_check;
     Button btn_signup;
-
-    RetrofitService rs = new RetrofitService();
-
     Spinner sp_city, sp_gu, sp_month, sp_domain;
-
     ArrayAdapter monthAdaptor, cityAdaptor, mailAdaptor;
     ArrayAdapter<String> arrayAdapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +45,9 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         setting();
-        initAddressSpinner(); // (시 군 구) 스피너 메소드
-        get_domain();
-        pw_check();
+        initAddressSpinner(); // (시/도) 스피너 메소드
+        get_domain(); // 이메일 스피너 선택시, 도메인 edittext에 반영되는 메소드
+        pw_check(); // 비밀번호 체크 메소드
         btn_signup.setOnClickListener(signup); // 회원가입 버튼
     }
 
@@ -71,14 +68,14 @@ public class SignupActivity extends AppCompatActivity {
         sp_city = (Spinner)findViewById(R.id.spinner_si);
         sp_gu = (Spinner)findViewById(R.id.spinner_gu);
 
-        monthAdaptor = ArrayAdapter.createFromResource(this,R.array.date_month, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
-        sp_month.setAdapter(monthAdaptor);
+        mailAdaptor = ArrayAdapter.createFromResource(this,R.array.email_choice, android.R.layout.simple_spinner_dropdown_item);
+        sp_domain.setAdapter(mailAdaptor);
 
         cityAdaptor = ArrayAdapter.createFromResource(this,R.array.country_area, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         sp_city.setAdapter(cityAdaptor);
 
-        mailAdaptor = ArrayAdapter.createFromResource(this,R.array.email_choice, android.R.layout.simple_spinner_dropdown_item);
-        sp_domain.setAdapter(mailAdaptor);
+        monthAdaptor = ArrayAdapter.createFromResource(this,R.array.date_month, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        sp_month.setAdapter(monthAdaptor);
     }
 
     private void initAddressSpinner() {
@@ -145,7 +142,7 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
-    }
+    } // (시/도) 스피너 메소드
 
     private void setguSpinnerAdapterItem(int array_resource) {
         if (arrayAdapter != null) {
@@ -160,8 +157,7 @@ public class SignupActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, (String[])getResources().getStringArray(array_resource));
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_gu.setAdapter(arrayAdapter);
-    }
-
+    } // 구 스피너 메소드
 
     public void get_domain() {
         sp_domain.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -180,8 +176,7 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
-    }
-
+    } // 이메일 스피너 선택시, 도메인 edittext에 반영되는 메소드
 
     public void pw_check() { // 비밀번호 체크 메서드
 
@@ -224,26 +219,10 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+    } // 비밀번호 체크 메소드
 
 
-
-//    View.OnClickListener check = new View.OnClickListener() { // 비밀번호 확인
-//        @Override
-//        public void onClick(View view) {
-//            if (et_pw.getText().toString().equals(et_pw_check.getText().toString())){
-//                tv_check.setText("비밀번호가 일치합니다.");
-//            }
-//            else{
-//                tv_check.setText("비밀번호가 일치하지않습니다.");
-//            }
-//        }
-//    };
-
-
-
-
-    View.OnClickListener signup = new View.OnClickListener() { // 회원가입
+    View.OnClickListener signup = new View.OnClickListener() { // 회원가입 버튼 클릭
         @Override
         public void onClick(View view) {
 
@@ -255,18 +234,14 @@ public class SignupActivity extends AppCompatActivity {
             String birth = et_birth.getText().toString() + "-" +sp_month.getSelectedItem().toString() + "-" + et_day.getText().toString(); // 수정
             String number = et_number.getText().toString();
 
-
             if(id.length() == 0 || pw.length() == 0 || name.length() == 0 || birth.length() == 0 || number.length() == 0 || address.length() == 0 || email.length() == 0){
                 Toast.makeText(getApplicationContext(), "미기재한 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
-//            else if(tv_check.getText().equals("비밀번호가 일치하지않습니다.") || tv_check.getText().equals("비밀번호를 입력하세요.")) {
-//                Toast.makeText(getApplicationContext(), "비밀번호 확인이 필요합니다.", Toast.LENGTH_SHORT).show();
-//            }
             else { // 회원가입 성공 DB저장
                 rs.service.SignupFunc(new SignupData(id, pw, name, birth, number, address, email)).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) {
+                        if (response.isSuccessful()) { // 서버통신 성공
                             try {
                                 String result = response.body().string();
                                 Log.v(rs.TAG, "[SignupActivity] : " + result);
@@ -281,13 +256,13 @@ public class SignupActivity extends AppCompatActivity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } else {
+                        } else { // 서버통신 에러
                             Log.v(rs.TAG, "error = " + String.valueOf(response.code()));
                             Toast.makeText(getApplicationContext(), "[SignupActivity] error = " + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<ResponseBody> call, Throwable t) { // 서버통신 실패
                         Log.v(rs.TAG, "[SignupActivity] Fail");
                         Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
                     }

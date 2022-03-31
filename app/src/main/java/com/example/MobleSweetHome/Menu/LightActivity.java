@@ -1,4 +1,4 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,10 +11,10 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.MobleSweetHome.Data.RaspiData;
-import com.example.MobleSweetHome.Data.RaspiResponse;
+import com.example.MobleSweetHome.R;
+import com.example.MobleSweetHome.Server.RetrofitService;
 
 import java.io.IOException;
 
@@ -76,13 +76,13 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
 
                 while(ctl) {
                     try {
-                        rs.service.Led_Check1(new RaspiData()).enqueue(new Callback<RaspiData>() {
+                        rs.service.Led_Check1(new RaspiData()).enqueue(new Callback<RaspiData>() { // 거실 LED
                             @Override
                             public void onResponse(Call<RaspiData> call, Response<RaspiData> response) {
                                 RaspiData result = response.body();
                                 String check = String.valueOf(result.getCheck());
-                                if(check.equals("1")) light1.setChecked(true);
-                                else if(check.equals("0")) light1.setChecked(false);
+                                if(check.equals("1")) light1.setChecked(true); // on
+                                else if(check.equals("0")) light1.setChecked(false); // off
                                 else if(check.equals("-1")) {
                                     light1.setChecked(false);
                                     tv_sensor_state.setText("* 센서 접속 실패");
@@ -95,13 +95,13 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
                             }
                         });
 
-                        rs.service.Led_Check2(new RaspiData()).enqueue(new Callback<RaspiData>() {
+                        rs.service.Led_Check2(new RaspiData()).enqueue(new Callback<RaspiData>() { // 화장실 LED
                             @Override
                             public void onResponse(Call<RaspiData> call, Response<RaspiData> response) {
                                 RaspiData result = response.body();
                                 String check = String.valueOf(result.getCheck());
-                                if(check.equals("1")) light2.setChecked(true);
-                                else if(check.equals("0")) light2.setChecked(false);
+                                if(check.equals("1")) light2.setChecked(true); // on
+                                else if(check.equals("0")) light2.setChecked(false); // off
                                 else if(check.equals("-1")) {
                                     light2.setChecked(false);
                                     tv_sensor_state.setText("* 센서 접속 실패");
@@ -115,13 +115,13 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
                             }
                         });
 
-                        rs.service.Led_Check3(new RaspiData()).enqueue(new Callback<RaspiData>() {
+                        rs.service.Led_Check3(new RaspiData()).enqueue(new Callback<RaspiData>() { // 방1 LED
                             @Override
                             public void onResponse(Call<RaspiData> call, Response<RaspiData> response) {
                                 RaspiData result = response.body();
                                 String check = String.valueOf(result.getCheck());
-                                if(check.equals("1")) light3.setChecked(true);
-                                else if(check.equals("0")) light3.setChecked(false);
+                                if(check.equals("1")) light3.setChecked(true); // on
+                                else if(check.equals("0")) light3.setChecked(false); // off
                                 else if(check.equals("-1")) {
                                     light3.setChecked(false);
                                     tv_sensor_state.setText("* 센서 접속 실패");
@@ -134,7 +134,7 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
                                 tv_sensor_state.setText("* 센서 접속 실패");
                             }
                         });
-                        Thread.sleep(4000);
+                        Thread.sleep(5000); // 5초에 한번씩 갱신할 수 있도록
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -142,22 +142,22 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
             }
         };
         thread.start();
-    }
+    } // LED on/off 상태를 반복적으로 체크해서 LED 상태를 반영하는 메서드
 
     View.OnClickListener MENU = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(LightActivity.this, MenuActivity.class);
             setResult(RESULT_OK, intent);
-            ctl = false;
+            ctl = false; // 스레드 종료하게끔 true -> false
             finish(); // 해당 액티비티 종료
         }
     };
 
     @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) { // git testing
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
         switch (compoundButton.getId()) {
-            case R.id.switch_light1:
+            case R.id.switch_light1: // 거실 LED
                 if(isChecked) imageView1.setImageResource(R.drawable.turnon1);
                 else imageView1.setImageResource(R.drawable.turnoff1);
                 rs.service.Room1_Func(new RaspiData(isChecked)).enqueue(new Callback<ResponseBody>() {
@@ -166,8 +166,8 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
                         if(response.isSuccessful()) {
                             try {
                                 String result = response.body().string();
-                                if(result.equals("실패")) tv_sensor_state.setText("* 센서 접속 실패");
-                                else tv_sensor_state.setText("");
+                                if(result.equals("실패")) tv_sensor_state.setText("* 센서 접속 실패"); // Raspberrypi Flask Server Fail
+                                else tv_sensor_state.setText(""); // Raspberrypi Flask Server Success, LED ON(1) or OFF(0)
                                 Log.v(rs.TAG, "[LightActivity] LED1 : " + result);
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -181,8 +181,7 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
                 });
                 break;
 
-
-            case R.id.switch_light2:
+            case R.id.switch_light2: // 화장실 LED
                 if(isChecked) imageView2.setImageResource(R.drawable.turnon1);
                 else imageView2.setImageResource(R.drawable.turnoff1);
                 rs.service.Room2_Func(new RaspiData(isChecked)).enqueue(new Callback<ResponseBody>() {
@@ -190,8 +189,8 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
                             String result = response.body().string();
-                            if(result.equals("실패")) tv_sensor_state.setText("* 센서 접속 실패");
-                            else tv_sensor_state.setText(""); // 성공
+                            if(result.equals("실패")) tv_sensor_state.setText("* 센서 접속 실패"); // Raspberrypi Flask Server Fail
+                            else tv_sensor_state.setText(""); // Raspberrypi Flask Server Success, LED ON(1) or OFF(0)
                             Log.v(rs.TAG, "[LightActivity] : " + result);
                         } catch (IOException e) {
                                 e.printStackTrace();
@@ -204,8 +203,7 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
                 });
                 break;
 
-
-            case R.id.switch_light3:
+            case R.id.switch_light3: // 방1 LED
                 if(isChecked) imageView3.setImageResource(R.drawable.turnon1);
                 else imageView3.setImageResource(R.drawable.turnoff1);
                 rs.service.Room3_Func(new RaspiData(isChecked)).enqueue(new Callback<ResponseBody>() {
@@ -213,8 +211,8 @@ public class LightActivity extends AppCompatActivity implements CompoundButton.O
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
                             String result = response.body().string();
-                            if(result.equals("실패")) tv_sensor_state.setText("* 센서 접속 실패");
-                            else tv_sensor_state.setText(""); // 성공
+                            if(result.equals("실패")) tv_sensor_state.setText("* 센서 접속 실패"); // Raspberrypi Flask Server Fail
+                            else tv_sensor_state.setText(""); // Raspberrypi Flask Server Success, LED ON(1) or OFF(0)
                             Log.v(rs.TAG, "[LightActivity] : " + result);
                         } catch (IOException e) {
                             e.printStackTrace();

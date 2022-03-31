@@ -1,4 +1,4 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.MobleSweetHome.Data.LoginData;
+import com.example.MobleSweetHome.R;
+import com.example.MobleSweetHome.Server.RetrofitService;
 
 import java.io.IOException;
 
@@ -36,9 +38,8 @@ public class PasswordUpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pwupdate);
 
         setting();
-        pw_check();
+        pw_check(); // 비밀번호 체크 메소드
 
-//        btn_check.setOnClickListener(CHECK);
         btn_update.setOnClickListener(UPDATE);
         btn_home.setOnClickListener(HOME);
     }
@@ -48,20 +49,17 @@ public class PasswordUpdateActivity extends AppCompatActivity {
         pw_check = (EditText)findViewById(R.id.check_pw);
         tv = (TextView)findViewById(R.id.tv_pw);
         btn_update = (Button)findViewById(R.id.btn_update);
-//        btn_check = (Button)findViewById(R.id.btn_check);
         btn_home = (Button)findViewById(R.id.btn_home);
     }
 
-    public void pw_check() { // 비밀번호 체크 메서드
+    public void pw_check() { // 비밀번호 체크 메소드
 
         pw_check.addTextChangedListener(new TextWatcher() {
-
             // 입력하기전
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 tv.setText("비밀번호를 입력하세요.");
             }
-
             // 입력시
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -78,7 +76,6 @@ public class PasswordUpdateActivity extends AppCompatActivity {
                     btn_update.setEnabled(false);
                 }
             }
-
             // 입력이 끝났을 때
             @Override
             public void afterTextChanged(Editable editable) {
@@ -94,20 +91,8 @@ public class PasswordUpdateActivity extends AppCompatActivity {
                     btn_update.setEnabled(false);
                 }
             }
-        });
-
+        }); // 비밀번호 체크 메소드
     }
-
-
-
-//    View.OnClickListener CHECK = new View.OnClickListener() { // 비밀번호 확인
-//        @Override
-//        public void onClick(View view) {
-//            if(pw.length() == 0 || pw_check.length() == 0) tv.setText("비밀번호를 입력하세요.");
-//            else if(pw.getText().toString().equals(pw_check.getText().toString())) tv.setText("비밀번호가 일치합니다.");
-//            else tv.setText("비밀번호가 일치하지않습니다.");
-//        }
-//    };
 
     View.OnClickListener UPDATE = new View.OnClickListener() { // 비밀번호 변경
         @Override

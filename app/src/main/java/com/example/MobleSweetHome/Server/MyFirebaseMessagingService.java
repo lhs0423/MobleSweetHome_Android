@@ -1,4 +1,4 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Server;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.MobleSweetHome.R;
+import com.example.MobleSweetHome.SplashActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

@@ -14,28 +14,28 @@
         android:theme="@style/Theme.Example_Sugnup"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".VentActivity"
+            android:name=".Menu.VentActivity"
             android:exported="false" />
         <activity
-            android:name=".FireActivity"
+            android:name=".Menu.FireActivity"
             android:exported="false" />
         <activity
-            android:name=".SecureActivity"
+            android:name=".Menu.SecureActivity"
             android:exported="false" />
         <activity
-            android:name=".LightActivity"
+            android:name=".Menu.LightActivity"
             android:exported="false" />
         <activity
-            android:name=".PasswordUpdateActivity"
+            android:name=".Login.PasswordUpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".Menu.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".Login.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".Login.SignupActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -47,12 +47,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="false"
             android:launchMode="singleTask" />
 
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".Server.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

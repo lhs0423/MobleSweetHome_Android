@@ -1,4 +1,4 @@
-package com.example.MobleSweetHome;
+package com.example.MobleSweetHome.Menu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +16,15 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 
+import com.example.MobleSweetHome.R;
+
 public class SecureActivity extends AppCompatActivity {
+
     Button btn1,btn2;
     private WebView webView;
     private WebSettings webSettings;
-    private String url = "http://112.221.103.174:8091/?action=stream"; // 라즈베리파이 웹캠 링크
+    private String url = "http://112.221.103.174:8091/?action=stream"; // RaspberryPi Web CAM Link
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +40,9 @@ public class SecureActivity extends AppCompatActivity {
         webView.getSettings().setLoadWithOverviewMode(true); // 컨텐츠가 웹뷰보다 클 경우 스크린 크기에 맞게 조정
         webView.setHorizontalScrollBarEnabled(false); // 가로 스크롤
         webView.setVerticalScrollBarEnabled(false); // 세로 스크롤
-
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-
         webView.loadUrl(url);
-
     }
 
     public void setting() {
@@ -56,6 +57,7 @@ public class SecureActivity extends AppCompatActivity {
             finish();
         }
     };
+
     View.OnClickListener Police_Call = new View.OnClickListener() { // 신고하기
         @Override
         public void onClick(View view) {
