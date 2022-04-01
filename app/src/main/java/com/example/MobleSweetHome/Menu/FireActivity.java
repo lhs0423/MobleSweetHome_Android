@@ -26,7 +26,7 @@ public class FireActivity extends AppCompatActivity {
     Button returnmenu,calling;
     ImageView temperimage, gasimage;
     TextView tem,gas;
-    Integer gasdata, temdata;
+    int gasdata, temdata;
     String stgas,sttemp;
     Boolean ctl = true;
 
@@ -39,8 +39,7 @@ public class FireActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fire);
 
         setting();
-        gasData();
-        temData();
+        gastemp_Data();
 
 //        btn_token.setOnClickListener(Token);
 
@@ -96,75 +95,54 @@ public class FireActivity extends AppCompatActivity {
         }
     };
 
-    public void gasData () {
+    public void gastemp_Data () {
         Thread thread = new Thread() {
             public void run() {
                 super.run();
                 while (ctl) {
+                    //가스
                     rs.service.Gas_Func(new RaspiData()).enqueue(new Callback<RaspiResponse>() {
                         @Override
                         public void onResponse(Call<RaspiResponse> call, Response<RaspiResponse> response) {
                             RaspiResponse result = response.body();
                             gasdata = Integer.valueOf(result.getGas());
                             stgas = String.valueOf(gasdata);
-//                gasdata = String.valueOf(result.getGas());
-//                Log.d(rs.TAG ,"가스"+gasdata);
-//                gas.setText(gas);
                             gas.setText(stgas);
-                            if (gasdata >300) {
-                                gas.setTextColor(Color.parseColor("#fd5959"));
-                                gasimage.setImageResource(R.drawable.red_light);
-                                calling.setEnabled(true);
 
-                            }else {
-                                gas.setTextColor(Color.parseColor("#00c73c"));
-                                gasimage.setImageResource(R.drawable.green_light);
-                                calling.setEnabled(false);
-                            }
+//                            if (gasdata >300) {
+//                                gas.setTextColor(Color.parseColor("#fd5959"));
+//                                gasimage.setImageResource(R.drawable.red_light);
+//                                calling.setEnabled(true);
+//
+//                            }else {
+//                                gas.setTextColor(Color.parseColor("#00c73c"));
+//                                gasimage.setImageResource(R.drawable.green_light);
+//                                calling.setEnabled(false);
+//                            }
                         }
-
                         @Override
                         public void onFailure(Call<RaspiResponse> call, Throwable t) {
 
                         }
                     });
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-
-        };
-        thread.start();
-    }
-
-
-    public void temData () {
-        Thread thread =new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                while (ctl) {
+                    // 온도
                     rs.service.Temp_Humi(new RaspiData()).enqueue(new Callback<RaspiResponse>() {
                         @Override
                         public void onResponse(Call<RaspiResponse> call, Response<RaspiResponse> response) {
                             RaspiResponse result = response.body();
                             temdata = Integer.valueOf(result.getTemp());
                             sttemp = String.valueOf(temdata);
-
                             tem.setText(sttemp);
-                            if (temdata >50 ) {
-                                tem.setTextColor(Color.parseColor("#fd5959"));
-                                temperimage.setImageResource(R.drawable.red_light);
-                                calling.setEnabled(true);
-                            }else {
-                                tem.setTextColor(Color.parseColor("#00c73c"));
-                                temperimage.setImageResource(R.drawable.green_light);
-                                calling.setEnabled(false);
-                            }
+
+//                            if (temdata >50 ) {
+//                                tem.setTextColor(Color.parseColor("#fd5959"));
+//                                temperimage.setImageResource(R.drawable.red_light);
+//                                calling.setEnabled(true);
+//                            }else {
+//                                tem.setTextColor(Color.parseColor("#00c73c"));
+//                                temperimage.setImageResource(R.drawable.green_light);
+//                                calling.setEnabled(false);
+//                            }
                         }
 
                         @Override
@@ -173,6 +151,15 @@ public class FireActivity extends AppCompatActivity {
                         }
                     });
                     try {
+                        if ((gasdata > 300) || (temdata > 50)) {
+                            gas.setTextColor(Color.parseColor("#fd5959"));
+                            gasimage.setImageResource(R.drawable.red_light);
+                            calling.setEnabled(true);
+                        } else {
+                            gas.setTextColor(Color.parseColor("#00c73c"));
+                            gasimage.setImageResource(R.drawable.green_light);
+                            calling.setEnabled(false);
+                        }
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -182,6 +169,48 @@ public class FireActivity extends AppCompatActivity {
         };
         thread.start();
     }
+
+
+//    public void temData () {
+//        Thread thread =new Thread() {
+//            @Override
+//            public void run() {
+//                super.run();
+//                while (ctl) {
+//                    rs.service.Temp_Humi(new RaspiData()).enqueue(new Callback<RaspiResponse>() {
+//                        @Override
+//                        public void onResponse(Call<RaspiResponse> call, Response<RaspiResponse> response) {
+//                            RaspiResponse result = response.body();
+//                            temdata = Integer.valueOf(result.getTemp());
+//                            sttemp = String.valueOf(temdata);
+//
+//                            tem.setText(sttemp);
+//                            if (temdata >50 ) {
+//                                tem.setTextColor(Color.parseColor("#fd5959"));
+//                                temperimage.setImageResource(R.drawable.red_light);
+//                                calling.setEnabled(true);
+//                            }else {
+//                                tem.setTextColor(Color.parseColor("#00c73c"));
+//                                temperimage.setImageResource(R.drawable.green_light);
+//                                calling.setEnabled(false);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<RaspiResponse> call, Throwable t) {
+//
+//                        }
+//                    });
+//                    try {
+//                        Thread.sleep(5000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        };
+//        thread.start();
+//    }
 
 //    View.OnClickListener Token = new View.OnClickListener() {
 //        @Override
