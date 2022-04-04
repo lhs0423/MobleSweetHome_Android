@@ -6,6 +6,12 @@
 <img width = "100%" src="https://user-images.githubusercontent.com/99455626/161511043-99d63e84-ac1a-4f31-b24e-ab54a7786bfe.png"/>
 <img width = "100%" src="https://user-images.githubusercontent.com/99455626/161511043-99d63e84-ac1a-4f31-b24e-ab54a7786bfe.png"/>
 <img width = "100%" src="https://user-images.githubusercontent.com/99455626/161511146-4d7796f3-8a39-4323-9390-1697be9e6aa7.png"/>
+<img width = "100%" src="https://user-images.githubusercontent.com/99455626/161511322-75f5f04e-3690-42dc-8ba6-4f08faf1d80f.png"/>
+<img width = "100%" src="https://user-images.githubusercontent.com/99455626/161511453-694e9fdb-8af2-4f2a-a415-fcf562ddef3a.png"/>
+<img width = "100%" src="https://user-images.githubusercontent.com/99455626/161511529-6fec4d50-ad3c-425e-b8d6-31df5efda273.png"/>
+<img width = "100%" src="https://user-images.githubusercontent.com/99455626/161511601-d324bde1-c091-4933-ad48-06fa4717bd7f.png"/>
+<img width = "100%" src="https://user-images.githubusercontent.com/99455626/161511672-3e0dec4a-bf34-451a-84ca-d4d315045b77.png"/>
+
 
 
 
